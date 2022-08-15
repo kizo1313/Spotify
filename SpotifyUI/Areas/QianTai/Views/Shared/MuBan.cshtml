@@ -1,0 +1,425 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @RenderSection("Style", false)
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/CSS/style.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/CSS/style.css" rel="stylesheet" />
+    <script src="~/JS/jquery-1.7.2.min.js"></script>*
+    <script>
+        $(function () {
+            ReSize();
+            $(".userDivMain").click(function () {
+                if ($(".ico-dropdown").data("state") == 0) {
+                    $(".ico-dropdown").attr("src", "/Images/前台母版素材/tab_收起.png");
+                    $(".ico-dropdown").data("state", 1);
+                    $(".dropDownDiv").slideDown();
+                } else {
+                    $(".ico-dropdown").attr("src", "/Images/前台母版素材/tab_下拉.png");
+                    $(".ico-dropdown").data("state", 0);
+                    $(".dropDownDiv").slideUp();
+                }
+            })
+            $(window).resize(function () {
+                ReSize();
+            })
+        })
+        function ReSize() {
+            if (window.innerWidth < 800 || window.innerHeight < 650) {
+                $("body>*").hide();
+                $(".alerts").show();
+            } else {
+                $("body>*").show();
+                $(".alerts").hide();
+            }
+        }
+    </script>
+    <style>
+        .navbar-fixed-top, .navbar-fixed-bottom {
+            position: fixed;
+            margin-bottom: 0px;
+            height: 65px;
+            border: none;
+            border-top: 1px solid #bfbfbf;
+        }
+
+            .navbar-fixed-top > div {
+                display: inline-block;
+                height: 65px;
+            }
+
+        .logodiv > div {
+            width: 273px;
+            height: 65px;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .ico-logo {
+            margin: auto;
+            width: auto;
+            height: 39px;
+        }
+
+        .nav-right {
+            float: right;
+            padding-right: 10%;
+        }
+
+        .ico-user {
+            width: 32px;
+        }
+
+            .ico-user + span {
+                font-size: 15px;
+                font-weight: 600;
+            }
+
+        .userdiv {
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .userDivMain {
+            background-color: gainsboro;
+            border-radius: 23px;
+        }
+
+            .userDivMain:hover span {
+                color: white;
+            }
+
+            .userDivMain:hover {
+                background-color: #282828;
+                cursor: pointer;
+            }
+
+        .userdiv > * {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 65px;
+        }
+
+        .ico-dropdown {
+            width: 16px;
+        }
+
+        .dropDownDiv {
+            display: none;
+            border-radius: 7px;
+            width: 130px;
+            padding: 4px;
+            position: absolute;
+            z-index: 2;
+            top: 55px;
+            background-color: gainsboro;
+        }
+
+            .dropDownDiv > button {
+                border: none;
+                border-radius: 7px;
+                width: 122px;
+                height: 40px;
+                margin: 3px 0px;
+                line-height: 40px;
+                font-weight: 600;
+                background-color: gainsboro;
+            }
+
+                .dropDownDiv > button:hover {
+                    background-color: gray;
+                }
+
+        .mainLeft {
+            position: fixed;
+            height: 100%;
+            padding: 4px;
+            width: 274px;
+            background-color: #f8f8f8;
+        }
+
+            .mainLeft > * {
+                width: 266px;
+            }
+
+        .prev, .next {
+            position: relative;
+            bottom: 18px;
+            margin: 5px;
+            border-radius: 50%;
+            border: none;
+            background-color: #f8f8f8;
+        }
+
+            .prev img, .next img {
+                margin: 5px;
+            }
+
+            .prev:hover, .next:hover, .btns > button:hover {
+                background-color: gainsboro;
+            }
+
+            .prev:active, .next:active, .btns > button:active {
+                background-color: gray;
+            }
+
+        .btns {
+            width: 266px;
+            line-height: 60px;
+            font-size: 16px;
+        }
+
+        .btns-ico {
+            margin-left: 30px;
+        }
+
+        .btn-none {
+            background-color: #f8f8f8;
+            border: none;
+        }
+
+        .btns > * {
+            border-radius: 12px;
+            width: 100%;
+            text-align: left;
+        }
+
+            .btns > * > span {
+                margin-left: 10px;
+            }
+
+        .listDiv::-webkit-scrollbar {
+            display: none;
+        }
+
+        .playList .list {
+            height: 42px;
+            line-height: 30px;
+            font-size: 15px;
+        }
+
+        .listDiv {
+            overflow: auto;
+            height: 236px;
+            line-height: 30px;
+            padding-left: 30px;
+        }
+
+            .listDiv > button {
+                display: block;
+                width: 100%;
+                height: 30px;
+                text-align: left;
+                color: gray;
+            }
+
+                .listDiv > button:hover {
+                    color: black;
+                    font-weight: bold;
+                }
+
+                .listDiv > button:active {
+                    opacity: 0.4;
+                }
+
+        .navbar-fixed-bottom {
+            height: 90px;
+            margin: 0px auto;
+        }
+
+        .alerts {
+            display: none;
+            font-size: 30px;
+            margin: auto;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+
+        .navbar-fixed-bottom > div {
+        }
+
+        .bottom-left {
+            width: 300px;
+            height: 90px;
+            float: left;
+        }
+
+        .bottom-right {
+            float: right;
+            width: 300px;
+            height: 90px;
+        }
+
+        .music-control {
+            width: 600px;
+            margin: auto;
+            height: 90px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        @*头部*@
+
+        <div class="logodiv">
+            <div>
+                <img class="ico-logo" src="~/Images/前台母版素材/下载.png" />
+            </div>
+        </div>
+        <div>
+            <button class="prev"><img src="~/Images/前台母版素材/上一页.png" /></button>
+            <button class="next"><img src="~/Images/前台母版素材/下一页.png" /></button>
+        </div>
+        <div class="nav-right">
+            <div class="userdiv">
+                <div>
+                    <div class="userDivMain">
+                        <img src="~/Images/前台母版素材/用户头像.png" class="ico-user" />
+                        <span>白枳kizo</span>
+                        <img src="~/Images/前台母版素材/tab_下拉.png" class="ico-dropdown" data-state="0" />
+                        <div style="width:10px;display:inline-block;"></div>
+                    </div>
+                    <div class="dropDownDiv">
+                        <button>个人中心</button>
+                        <button>个人资料</button>
+                        <button>升级会员</button>
+                        <button>退出登录</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        @*中部*@
+        <div class="mainLeft">
+            @*左边*@
+            <div style="height:65px;"></div>
+            <div class="btns">
+                <button class="btn-none">
+                    <img src="~/Images/前台母版素材/主页.png" class="btns-ico" />
+                    <span><strong>主页</strong></span>
+                </button>
+                <button class="btn-none">
+                    <img src="~/Images/前台母版素材/搜索.png" class="btns-ico" />
+                    <span><strong>搜索</strong></span>
+                </button>
+                <button class="btn-none">
+                    <img src="~/Images/前台母版素材/音乐库.png" class="btns-ico" />
+                    <span><strong>音乐库</strong></span>
+                </button>
+                <button class="btn-none">
+                    <img src="~/Images/前台母版素材/播放记录.png" class="btns-ico" />
+                    <span><strong>播放历史</strong></span>
+                </button>
+            </div>
+            <div style="padding:0px 15px;"><hr style="background-color: #e0e0e0;" /></div>
+            <div class="playList btns">
+                <button class="btn-none">
+                    <img src="~/Images/前台母版素材/添加.png" class="btns-ico" />
+                    <span><strong>创建歌单</strong></span>
+                </button>
+                <div class="listDiv">
+                    <button class="btn-none list">
+                        <span>我喜欢的歌曲</span>
+                    </button>
+                    <button class="btn-none list">
+                        <span>春日民谣</span>
+                    </button>
+                    <button class="btn-none list">
+                        <span>夏日摇滚</span>
+                    </button>
+                    <button class="btn-none list">
+                        <span>秋日爵士</span>
+                    </button>
+                    <button class="btn-none list">
+                        <span>冬日乡村</span>
+                    </button>
+                    <button class="btn-none list">
+                        <span>冬日乡村</span>
+                    </button>
+                    <button class="btn-none list">
+                        <span>冬日乡村</span>
+                    </button>
+                    <button class="btn-none list">
+                        <span>冬日乡村</span>
+                    </button>
+                </div>
+            </div>
+            <div style="height:90px;"></div>
+        </div>
+
+        <div>
+            @*内容部分*@
+            <div style="height:65px;"></div>
+            <div style="margin-left:274px;">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <div id="player" class="navbar navbar-default navbar-fixed-bottom">
+        <div class="ctrl">
+            <!-- @*底部播放器*@ -->
+            <div class="bottom-left">
+                <!-- @*左边*@ -->
+                <div class="cover"><!-- 歌曲图片 --></div>
+                <div>
+                    <div class="tag" style="margin-left: 120px;">
+                        <strong>Title</strong>
+                        <span class="artist">Artist</span>
+                        <span class="album">Album</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="bottom-right">
+                <!-- @*右边*@ -->
+                <div class="control">
+                    <div class="volume right">
+                        <div class="mute icon left"></div>
+                        <div class="slider left">
+                            <div class="pace"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="music-control">
+                <!-- @*中间*@ -->
+                <div class="control">
+                    <div class="left" style="margin: 30px auto 30px;position: relative;margin-left: 250px;margin-top: 12px;">
+                        <div class="rewind icon"></div>
+                        <div class="playback icon"></div>
+                        <div class="fastforward icon"></div>
+                    </div>
+                </div>
+
+                <div class="progress">
+                    <div class="slider">
+                        <div class="loaded"></div>
+                        <div class="pace"></div>
+                    </div>
+                    <div class="timer left">0:00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/JS/jquery-ui-1.8.17.custom.min.js"></script>
+    <script src="~/JS/script.js"></script>
+    @RenderSection("Script", false)
+
+
+
+    <div class="alerts"><iframe style="width:100%;height:100%;border:none;" src="@Url.Action("Warning","ShouYe")"></iframe></div>
+</body>
+</html>

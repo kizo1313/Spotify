@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/QianTai/Views/Shared/MuBan.cshtml";
+}
+
+
+<div id="div-a">@Html.Partial("~/Areas/QianTai/Views/A.cshtml")</div>
+<button id="btn-a"> aaaaaaaa</button>
+@section Script
+{
+    <script>
+        $(function () {
+            $("#btn-a").click(function () {
+                $("#div-a").load("https://localhost:44348/QianTai/ShouYe/Ba");
+            })
+        })
+    </script>
+}

@@ -1,0 +1,123 @@
+音乐表(Music)
+音乐编号 			nvarchar(50,GUID命名)		MusicId
+音乐名称 			nvarchar(50)				MusicName
+音乐格式表编号 		int (外键)				MusicTypeId
+音乐所属专辑编号 		int (外键)				AlbumId
+音乐流派编号 		int (允许为空,外键) 			GenreId
+歌手编号 			int(外键) 				SingerId
+音乐封面			nvarchar(50)				Cover
+音乐时长 			time 					Duration
+作词人 			nvarchar(50,允许为空) 		Lyricist
+作曲人 			nvarchar(50,允许为空) 		Composer
+编曲人			nvarchar(50,允许为空)		Arranger
+制作人			nvarchar(50,允许为空)		Producer
+出版方			nvarchar(50,允许为空)		Publisher
+版权方			nvarchar(50,允许为空)		CopyrightOwner
+歌词文件			text					Lyric
+发行时间			date					ReleaseTime
+单曲价格(可以为空)		decimal(18,2)			Price
+是否为VIP歌曲		nchar(1,(是,否))			VipMusic
+热度				int					Popularity
+审核				nvarchar(3,'已过审',未过审)	Audit
+
+音乐格式表(MusicType)
+音乐格式主键		int(联合主键,自增)			TypeId
+音乐主键(联合主键,外键)	nvarchar(50,联合主键,外键)	MusicId
+音乐音质格式		nvarchar(3,(标准,高品质,无损))	TypeName
+音乐后缀名			nvarchar(10)				Extension
+音乐文件			text					MusicFile
+
+专辑表(Album)
+专辑编号			int(主键自增)				AlbumId
+专辑名称			nvarchar(20)				AlbumName
+语种 				nvarchar(20) 			Languages
+专辑流派编号		int(外键,允许为空)			GenreId
+歌手编号			int(外键)				SingerId
+专辑封面			nvarchar(50)				Cover
+出版方			nvarchar(50,允许为空)		Publisher
+版权方			nvarchar(50,允许为空)		CopyrightOwner
+专辑详情			text					AlbumContent
+专辑价格			decimal(18,2,允许为空)		Price
+
+歌手表(Singer)
+歌手编号			int					SingerId
+歌手名称			nvarchar(50)				SingerName
+歌手头像			nvarchar(50)				Portrait
+歌手封面			nvarchar(50)				Cover
+歌手详情			nvarchar(50)				SingerContent
+入驻歌手编号		int(用户编号外键,可以为空)	UserId
+				(个人主页变成歌手页面)
+流派表(Genre)
+编号				int(主键,自增)			GenreId
+英文名称			nvarchar(50,允许为空)		EnglishName
+中文名称			nvarchar(50,允许为空)		ChineseName
+	//两者都允许为空但新增必须有一者不能为空,后台新增时候约束一下
+详细介绍			text					GenreContent
+
+用户表(User)
+编号				int					UserId
+名称				nvarchar(20)				UserName
+账户				nvarchar(20)				Account
+密码				nvarchar(20)				Password
+手机号码			nchar(11)				Telephone
+个性签名			nvarchar(50,允许为空)		Signature
+年龄				int					Age
+头像				nvarchar(50)				Portrait
+人群分类编号(外键)		int					IdentityId
+
+会员订购记录表(VipRecord)
+记录编号			int(联合主键,自增)			RecordId
+用户编号			int(联合主键,外键)			UserId
+会员订购时间		date					StartDate
+会员截止时间		date					EndDate
+
+歌单表(PlayList)
+歌单编号			int(联合主键,自增)			ListId
+用户编号			int(联合主键,外键)			UserId
+歌单介绍			text					ListContent
+
+
+歌单内容表(PlayListDetails)
+歌单内容			int(联合主键,自增)			DetailsId
+歌单编号			int(联合主键,外键)			ListId
+音乐编号(外键)		nvarchar(50,外键)			MusicId
+
+
+播放记录表(PlaybackRecord)
+记录编号			int(主键,自增)			RecordId
+音乐编号			nvarchar(50,外键)			MusicId
+用户编号			int(外键)				UserId
+播放时间			datetime				PlayTime
+
+评论表(comment)
+评论编号			int(主键,自增)			CommentId
+专辑编号			int(外键,允许为空)			AlbumId
+歌曲编号			nvarchar(50,外键,允许为空)	MusicId
+歌单编号			int(外键,允许为空)			ListId
+用户编号(外键)		int(外键,允许为空)			UserId
+发布日期			Date					ReleaseDate				
+评论内容			text					Content
+点赞数量			int					likes
+
+资源权限表(Resources)
+(音乐表,音乐格式表,专辑表,歌手表,流派表,用户表,会员订购记录表,歌单表,歌单内容表,评论表)
+编号				int(主键自增)				ResourcesId
+数据库中的表名		nvarchar(50)				TableName
+表中文名			nvarchar(50)				ChineseTableName
+
+操作权限表(Operation)
+(读取,写入,编辑,删除)
+编号				int(主键自增)				OperationId
+操作名称			nvarchar(50)				OperationName
+
+操作人群身份表(Identity)
+(平台方,入驻歌手,用户)
+编号				int(主键,自增)			IdentityId
+人群名称			nvarchar(50)				IdentityName
+
+操作人群对资源赋权表(authority)
+编号				int(主键自增)				AuthorityId
+人群编号			int(外键)				IdentityId
+操作编号			int(外键)				OperationId
+资源编号			int(外键)				ResourcesId
+赋权(已授权 || 未授权)	nchar(3)				Authority

@@ -1,0 +1,84 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ZhuTiSe</title>
+    <style>
+        html,body {
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+        div {
+            position: relative;
+            width: 320px;
+            height: 200px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .demo {
+            background: url("/Images/前台母版素材/Apple_Music.png");
+            background-size: cover;
+        }
+
+        .animation {
+            z-index: 1;
+            overflow: hidden;
+            &::before{
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url("/Images/前台母版素材/Apple_Music.png");
+                background-size: cover;
+                animation: change 10s infinite linear;
+            }
+        }
+
+        @@keyframes change {
+        0% {
+            transform: scale(1);
+            filter: blur(0px);
+        }
+        80% {
+            filter: blur(50px);
+            transform: scale(3);
+        }
+        100% {
+            transform: scale(3);
+            filter: blur(50px);
+        }
+        }
+
+        .filter::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("/Images/前台母版素材/Apple_Music.png");
+            background-size: cover;
+            filter: blur(50px);
+            transform: scale(3);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="img demo"></div>
+        <div class="img animation"></div>
+        <div class="img filter"></div>
+    </div>
+</body>
+</html>
